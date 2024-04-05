@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react';
 import Onboarding from './src/onboarding/screens/Onboarding';
 import Login from './src/authentication/screens/Login';
 import Register from './src/authentication/screens/Register';
+import AgePicker from './src/authentication/components/Picker';
+import Choose from './src/authentication/screens/Choose';
+import GenderPicker from './src/authentication/screens/GenderPicker';
+import Index from './src';
 
 
 const Loading = () => {
@@ -34,9 +38,7 @@ export default function App() {
   }, [])
   return (
     <View style={styles.container}>
-      {/* {loading ? <Loading /> : viewedOnboarding ? <Login /> : <Onboarding />} */}
-      <Login />
-      <StatusBar style="auto" />
+      {loading ? <Loading /> : viewedOnboarding ? <Login /> : <Index />}
     </View>
   );
 }
