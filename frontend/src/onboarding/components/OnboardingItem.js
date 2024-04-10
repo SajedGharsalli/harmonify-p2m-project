@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, Image, useWindowDimensions } from 'react-native';
 import React from 'react';
 import Button from '../components/Button';
+import { useNavigation } from '@react-navigation/native';
 
-const OnboardingItem = ({ item }) => {
+const OnboardingItem = ({ item, navigation }) => {
     const { height, width } = useWindowDimensions();
 
     return (
@@ -14,7 +15,7 @@ const OnboardingItem = ({ item }) => {
                 <Text style={styles.title} >{item.title}</Text>
                 <Text style={styles.description} >{item.description}</Text>
             </View>
-            <Button index={item.id} />
+            <Button index={item.id} onPress={()=>navigation.navigate('Register')}/>
         </View>
     );
 }

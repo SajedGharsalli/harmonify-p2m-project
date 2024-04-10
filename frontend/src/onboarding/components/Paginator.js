@@ -6,9 +6,7 @@ export default function Paginator({ data, scrollX }) {
     return (
         <View style={styles.container} >
             {data.map((_, i) => {
-
                 const inputRange = [(i - 1) * width, i * width, (i + 1) * width]
-
                 const dotWidth = scrollX.interpolate({
                     inputRange,
                     outputRange: [10, 20, 10],

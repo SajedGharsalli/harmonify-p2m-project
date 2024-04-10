@@ -3,6 +3,7 @@ import React from 'react'
 import { useState, useRef } from 'react'
 import OnboardingItem from '../components/OnboardingItem'
 import Paginator from '../components/Paginator'
+import { useNavigation } from '@react-navigation/native';
 
 
 import data from '../data'
@@ -10,6 +11,8 @@ import Already from '../components/Already'
 
 
 const Onboarding = () => {
+
+  const navigation = useNavigation()
 
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -33,7 +36,7 @@ const Onboarding = () => {
     <View style={styles.container} >
       <View style={{ flex: 3 }}>
         <FlatList data={data}
-          renderItem={({ item }) => <OnboardingItem item={item} />}
+          renderItem={({ item }) => <OnboardingItem item={item} navigation={navigation} />}
           keyExtractor={(item) => item.id}
           horizontal
           showsHorizontalScrollIndicator={false}
