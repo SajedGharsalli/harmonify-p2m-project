@@ -5,6 +5,7 @@ import CustomButton from '../components/CustomButton'
 import Have from '../components/Have'
 import Separator from '../components/Separator'
 import IconButton from '../components/IconButton'
+import {useNavigation} from '@react-navigation/native'
 
 import axios from 'axios'
 
@@ -13,14 +14,12 @@ import google from '../../../pics/google.png'
 
 const { width, height } = Dimensions.get('window')
 
-
-
 export default function Register() {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
-    const [mes, Setmess] = useState('')
 
+    const navigation = useNavigation()
 
     const handleRegister = () => {
         const userData = {
@@ -28,15 +27,12 @@ export default function Register() {
             email: email,
             password: password
         }
-
-        axios.post('http://192.168.1.7:3000/user/register', userData).then((res) => {
+        axios.post('http://192.168.1.4:3000/user/register', userData).then((res) => {
             console.log(res.data)
-            Setmess("register successful")
+            navigation.navigate('GenderPicker',{email})
         }).catch(err => {
             console.log(err)
-            Setmess('error')
         })
-
     }
     return (
         <SafeAreaView style={styles.container}>
@@ -65,7 +61,6 @@ export default function Register() {
                     ispassword={true}
                 />
                 <CustomButton title={'Sign Up'} onPress={() => handleRegister()} />
-                <Text>{mes}</Text>
                 <Have />
                 <Separator />
                 <View style={styles.iconContainer}>

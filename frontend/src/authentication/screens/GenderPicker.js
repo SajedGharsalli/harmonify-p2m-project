@@ -4,12 +4,32 @@ import man from '../../../pics/man.png';
 import woman from '../../../pics/woman.png';
 import Button from '../components/Button';
 
+import axios from 'axios'
+
+import {useRoute,useNavigation} from '@react-navigation/native'
+
 export default function GenderPicker() {
   const [selectedGender, setSelectedGender] = useState(null);
 
   const handlePress = (gender) => {
     setSelectedGender(selectedGender === gender ? null : gender);
   };
+
+  const route = useRoute()
+  const navigation = useNavigation()
+
+  const {email} = route.params
+
+  const handleNext =()=>{
+    const userData={
+      email : email,
+      sex : selectedGender
+    }
+    axios.put('http://192.168.1.4:3000/user/gender',userData).then((res) => {
+      console.log(res.data)
+  }).catch((err)=>console.log(err))
+    navigation.navigate('Choose',{email,selectedGender})
+  }
 
   return (
     <View style={{ flex: 1, justifyContent: 'center' }}>
@@ -29,7 +49,7 @@ export default function GenderPicker() {
         </Pressable>
       </View>
       <View style={{ position: 'absolute', alignSelf: 'center', bottom: 180 }}>
-        {selectedGender && <Button title={'Next'} />}
+        {selectedGender && <Button title={'Next'} onPress={()=>handleNext()}/>}
       </View>
     </View>
   );
