@@ -1,15 +1,19 @@
-require('./config/db')
-const express = require('express')
-const app = express()
-const port = 3000
+// server.js
+// mongodb
+const db = require('./config/db');
 
-UserRouter = require('./Routers/UserRouter')
+const express = require('express');
+const app = express();
+const port = 3000;
 
+const UserRouter = require('./routers/userRouter');
 
-app.use(express.json())
+// Use express.json() middleware directly
+app.use(express.json());
 
-app.use('/user', UserRouter)
+// Use the correct path for mounting the router
+app.use('/user', UserRouter);
 
 app.listen(port, () => {
-    console.log(`server running on  ${port}`)
-})
+  console.log(`server running on : ${port}`);
+});

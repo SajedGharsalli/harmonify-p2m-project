@@ -86,7 +86,6 @@ router.post('/register', (req, res) => {
 })
 
 
-
 //login
 router.post('/login', (req, res) => {
     let { email, password } = req.body
@@ -141,5 +140,69 @@ router.post('/login', (req, res) => {
         })
     }
 })
+
+
+router.put('/choose', async (req, res) => {
+  try {
+      const { email, age, weight, height } = req.body;
+
+      const existingUser = await User.findOne({ email });
+
+      if (!existingUser) {
+          return res.json({
+              status: "failed",
+              message: "User not found",
+          });
+      }
+
+      existingUser.age = age;
+      existingUser.weight = weight;
+      existingUser.height = height;
+
+      const updatedUser = await existingUser.save();
+
+      res.json({
+          status: "success",
+          message: "User data updated successfully",
+          data: updatedUser,
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({
+          status: "failed",
+          message: "Internal server error",
+      });
+  }
+});
+
+router.put('/gender', async (req, res) => {
+  try {
+      const { email, sex } = req.body;
+
+      const user = await User.findOne({ email });
+
+      if (!user) {
+          return res.json({
+              status: "failed",
+              message: "User not found",
+          });
+      }
+
+      user.sex = sex;
+      const updatedUser = await user.save();
+
+      res.json({
+          status: "success",
+          message: "User sex updated successfully",
+          data: updatedUser,
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({
+          status: "failed",
+          message: "Internal server error",
+      });
+  }
+});
 
 module.exports = router
