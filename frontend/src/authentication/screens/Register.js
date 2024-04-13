@@ -5,7 +5,7 @@ import CustomButton from '../components/CustomButton'
 import Have from '../components/Have'
 import Separator from '../components/Separator'
 import IconButton from '../components/IconButton'
-import {useNavigation} from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 
 import axios from 'axios'
 
@@ -29,10 +29,11 @@ export default function Register() {
         }
         axios.post('http://192.168.1.4:3000/user/register', userData).then((res) => {
             console.log(res.data)
-            navigation.navigate('GenderPicker',{email})
+
         }).catch(err => {
             console.log(err)
         })
+        navigation.navigate('Continue', { email })
     }
     return (
         <SafeAreaView style={styles.container}>

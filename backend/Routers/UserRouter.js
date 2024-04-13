@@ -142,9 +142,9 @@ router.post('/login', (req, res) => {
 })
 
 
-router.put('/choose', async (req, res) => {
+router.put('/update', async (req, res) => {
   try {
-      const { email, age, weight, height } = req.body;
+      const { email, age, weight, height,sex } = req.body;
 
       const existingUser = await User.findOne({ email });
 
@@ -158,6 +158,7 @@ router.put('/choose', async (req, res) => {
       existingUser.age = age;
       existingUser.weight = weight;
       existingUser.height = height;
+      existingUser.sex = sex
 
       const updatedUser = await existingUser.save();
 
@@ -175,34 +176,5 @@ router.put('/choose', async (req, res) => {
   }
 });
 
-router.put('/gender', async (req, res) => {
-  try {
-      const { email, sex } = req.body;
-
-      const user = await User.findOne({ email });
-
-      if (!user) {
-          return res.json({
-              status: "failed",
-              message: "User not found",
-          });
-      }
-
-      user.sex = sex;
-      const updatedUser = await user.save();
-
-      res.json({
-          status: "success",
-          message: "User sex updated successfully",
-          data: updatedUser,
-      });
-  } catch (err) {
-      console.error(err);
-      res.status(500).json({
-          status: "failed",
-          message: "Internal server error",
-      });
-  }
-});
 
 module.exports = router
