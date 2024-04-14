@@ -18,6 +18,7 @@ export default function Register() {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [phone,setPhone]=useState(null)
 
     const navigation = useNavigation()
 
@@ -25,7 +26,8 @@ export default function Register() {
         const userData = {
             name: name,
             email: email,
-            password: password
+            password: password,
+            phone : phone,
         }
         axios.post('http://192.168.1.4:3000/user/register', userData).then((res) => {
             console.log(res.data)
@@ -53,6 +55,12 @@ export default function Register() {
                     value={email}
                     setValue={setEmail}
                     placeHolder={'Enter your Email address'}
+                />
+                <Input 
+                title={'Phone number'}
+                value={phone}
+                setValue={setPhone}
+                placeHolder={'Enter your phone number'}
                 />
                 <Input
                     title={'Password'}
