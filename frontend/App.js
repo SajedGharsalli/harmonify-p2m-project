@@ -1,14 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Index from './src/Index';
-import Continue from './src/authentication/screens/Continue';
+import OtpVerif from './src/verification/screens/OtpVerif';
 
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Index />
-      <StatusBar style="auto" />
+      <OtpVerif />
+      <StatusBar style='dark' />
     </View>
   );
 }

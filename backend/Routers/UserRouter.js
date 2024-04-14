@@ -8,13 +8,12 @@ const bcrypt = require('bcrypt')
 
 //register
 router.post('/register', (req, res) => {
-    let { name, email, password, phone } = req.body
+    let { name, email, password } = req.body
     name = name.trim()
     email = email.trim()
     password = password.trim()
-    phone = phone.trim()
 
-    if (name == '' || email == '' || password == '' || phone == '') {
+    if (name == '' || email == '' || password == '') {
         res.json({
             status: 'FAILED',
             message: 'empty input fields !'
@@ -53,7 +52,7 @@ router.post('/register', (req, res) => {
                 const rounds = 10
                 bcrypt.hash(password, rounds).then(handledPassword => {
                     const newUser = new User({
-                        name, email, password: handledPassword , phone
+                        name, email, password: handledPassword
                     })
                     newUser.save().then(result => {
                         res.json({
