@@ -7,7 +7,7 @@ import OtpVerif from './src/verification/screens/OtpVerif';
 export default function App() {
   return (
     <View style={styles.container}>
-      <OtpVerif />
+      <Index />
       <StatusBar style='dark' />
     </View>
   );
