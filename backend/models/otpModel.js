@@ -7,7 +7,7 @@ const OTPSchema = new Schema({
     otp: String,
     createdAt : Date,
     expiredAt : Date
-})
+}) 
 
 const OTP = mongoose.model('OTP',OTPSchema)
 

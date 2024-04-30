@@ -4,6 +4,37 @@ const sendEmail = require('../util/sendEmail')
 
 const {AUTH_EMAIL}=process.env
 
+
+const verifyOTP = async ({ email, otp }) => {
+    try {
+        if (!(email && otp)) {
+            return "Email and OTP are missing"
+        }
+        const storedOTP = await OTP.findOne({ email });
+        if (!storedOTP) {
+            return 'No OTP stored for this email'
+        }
+        const { expiredAt, otp: otpStored } = storedOTP;
+        const currentTimestamp = new Date();
+        if (expiredAt < currentTimestamp) {
+            await OTP.deleteOne({ email });
+            return "The code has expired. Please request a new one";
+        }
+        if (otp !== otpStored) {
+            return "Invalid OTP"
+        }
+        return true;
+    } catch (err) {
+        throw err;
+    }
+};
+
+const deleteOTP = (email)=>{
+    try {
+        OTP.deleteOne({email})
+    }catch (err){throw err}
+}
+
 const sendOTP = async ({email,subject,message,duration = 1})=>{
     try {
         if (!{email,subject,message,duration}){
@@ -39,4 +70,4 @@ const sendOTP = async ({email,subject,message,duration = 1})=>{
         throw error
     }
 }
-module.exports = {sendOTP}
+module.exports = {sendOTP,verifyOTP,deleteOTP}
