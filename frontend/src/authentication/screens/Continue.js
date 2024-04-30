@@ -71,7 +71,7 @@ export default Continue = () => {
                     scrollEventThrottle={32}
                 />
             </View>
-            <View style={{ position: 'absolute', bottom: 120, width: 150, alignSelf: 'center' }} >
+            <View style={{  width: 150, alignSelf: 'center' }} >
                 {age && weight && height && Gender && <Button title={'Next'} onPress={() => handleNext()} />}
             </View>
         </View>
