@@ -28,7 +28,6 @@ export default function Picker({ data, selectedItem, setSelectedItem, icon }) {
         <FlatList
           data={data}
           renderItem={renderItem}
-          keyExtractor={(item) => item}
           showsVerticalScrollIndicator={false}
           pagingEnabled
           bounces={false}

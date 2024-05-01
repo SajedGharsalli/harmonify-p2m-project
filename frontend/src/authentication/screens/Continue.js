@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, Text, Animated, useWindowDimensions } from 'react-native'
+import { StyleSheet, View, FlatList, Text, useWindowDimensions } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
 import Choose from './Choose'
@@ -7,21 +7,33 @@ import Button from '../components/Button'
 
 import { useNavigation, useRoute } from '@react-navigation/native'
 
-
+import axios from 'axios'
 
 export default Continue = () => {
+    const { width } = useWindowDimensions();
+
     const route = useRoute()
     const navigation = useNavigation()
 
     const { email } = route.params
 
-    const { width } = useWindowDimensions();
+    const handleNext = () => {
+        const userData = {
+            email: email,
+            age: age,
+            weight: weight,
+            height: height,
+            sex: Gender
+        }
+        axios.put('http://192.168.1.4:3000/user/update', userData).then((res) => {
+            console.log(res.data)
+        }).catch((err) => { console.log(err) })
+    }
 
     const componentsArray = [
         { key: 'genderPicker', component: GenderPicker },
         { key: 'choose', component: Choose },
     ];
-
     const [age, setAge] = useState(null);
     const [weight, setWeight] = useState(null);
     const [height, setHeight] = useState(null);
@@ -38,22 +50,6 @@ export default Continue = () => {
             </View>)
     }
 
-
-    const handleNext = () => {
-        const userData = {
-            email: email,
-            age: age,
-            weight: weight,
-            height: height,
-            sex: Gender
-        }
-        axios.put('http://192.168.1.5:3000/user/update', userData).then((res) => {
-            console.log(res.data)
-            Setmess("register successful")
-        }).catch((err) => { console.log(err) })
-    }
-
-
     return (
         <View style={styles.container} >
             <View>
@@ -63,7 +59,7 @@ export default Continue = () => {
                 </View>
                 <FlatList data={componentsArray}
                     renderItem={({ item }) => render(item)}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => item.key}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     pagingEnabled

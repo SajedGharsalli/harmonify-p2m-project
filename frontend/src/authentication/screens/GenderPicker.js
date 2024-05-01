@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import man from '../../../pics/man.png';
 import woman from '../../../pics/woman.png';
 

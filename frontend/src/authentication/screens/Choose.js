@@ -15,7 +15,7 @@ export default function Choose({ items, setItems }) {
     <View >
       {data.map((item) => {
         return (
-          <View style={styles.container}>
+          <View style={styles.container} key={item.text}>
             <Text style={styles.title}>{item.text}</Text>
             <Picker data={item.data} selectedItem={item.item} setSelectedItem={item.setItem} icon={item.icon} />
           </View>

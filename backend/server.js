@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const UserRouter = require('./routers/userRouter');
+const UserRouter = require('./Routers/userRouter');
 const OTPRouter = require('./Routers/otpRouter')
 
 // Use express.json() middleware directly

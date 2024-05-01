@@ -10,6 +10,7 @@ const UserSchema = new Schema({
   weight: Number,
   height: Number,
   sex: String,
+  verified : Boolean ,
 });
 
 const User = mongoose.model('User', UserSchema);

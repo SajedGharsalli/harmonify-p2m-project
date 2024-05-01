@@ -4,6 +4,7 @@ import Onboarding from './onboarding/screens/Onboarding';
 import Register from './authentication/screens/Register';
 import Login from './authentication/screens/Login';
 import Continue from './authentication/screens/Continue';
+import OtpVerif from './verification/screens/OtpVerif';
 
 const Stack = createNativeStackNavigator()
 
@@ -15,6 +16,7 @@ export default function Index() {
         <Stack.Screen name='Register' component={Register} />
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='Continue' component={Continue} />
+        <Stack.Screen name='OTP' component={OtpVerif} />
       </Stack.Navigator>
     </NavigationContainer>
   )
