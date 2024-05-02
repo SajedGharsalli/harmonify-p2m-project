@@ -16,7 +16,7 @@ export default function GenderPicker({ Gender, setGender }) {
         <Pressable
           style={[styles.imageContainer, Gender === 'man' && { backgroundColor: '#cce6ff' }]}
           onPress={() => handlePress('man')}>
-          <Image source={man} style={styles.image} />
+          <Image source={man} style={styles.image}/>
           <Text style={styles.text}>Man</Text>
         </Pressable>
         <Pressable

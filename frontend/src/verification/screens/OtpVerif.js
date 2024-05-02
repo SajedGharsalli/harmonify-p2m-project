@@ -17,18 +17,32 @@ export default function OtpVerif() {
     const [code,setCode] = useState('')
     const MAX_CODE_LENGTH = 4
 
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
+
     const handleOtpVerification = ()=>{
         const otpData ={email : email,otp:code}
-        axios.post('http://192.168.1.4:3000/OTP/verify',otpData).then((res) => {
-            if (res.data.message===true) {
+        axios.post('http://192.168.43.81:3000/OTP/verify',otpData).then((res) => {
+            const { message } = res.data;
+            if (message===true) {
                 console.log("Email verified");
+                setModalMessage("Email verified");
             } else {
                 console.log("Email not verified");
+                setModalMessage("Email not verified");
             }
+            
+            setModalVisible(true);
         })
         .catch(err => console.log(err));
     }
 
+    const closeModal = () => {
+        setModalVisible(false);
+        if (modalMessage === "Email verified") {
+          navigation.navigate('Continue',{email})
+        }
+      };
 
     // const [timeLeft,setTimeLeft]= useState(null)
     // const [targetTime,setTargetTime]=useState(null)
@@ -46,6 +60,11 @@ export default function OtpVerif() {
         setCode={setCode} 
         maxLength={MAX_CODE_LENGTH} />
         {code.length ===4 && <Button title={'verify'} onPress={handleOtpVerification}/>}
+        <CustomModal
+        visible={modalVisible}
+        onClose={closeModal}
+        message={modalMessage}
+      />
     </View>
   )
 }

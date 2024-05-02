@@ -25,8 +25,9 @@ const verifyOTP = async ({ email, otp }) => {
         if (otp !== otpStored) {
             return "Invalid OTP"
         }
-        const existingUser = User.findOne({email})
+        const existingUser = await User.findOne({email})
         existingUser.verified = true;
+        existingUser.save();
         return true;
     } catch (err) {
         throw err;

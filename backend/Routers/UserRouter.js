@@ -22,18 +22,24 @@ router.post('/login', async (req,res)=>{
     email = email.trim();
     password = password.trim();
 
-    const login =loginUser({ email, password })
+    const login =await loginUser({ email, password })
     res.json(200).json({message : login})
 }
 )
 
 //update
-router.put('/update', async (req,res)=>{
+router.put('/update', async (req, res) => {
     let { email, age, weight, height, sex } = req.body;
     email = email.trim();
-    const update= updateUser({ email, age, weight, height, sex })
-    res.json(200).json({message : update})
+    try {
+        const update = await updateUser({ email, age, weight, height, sex });
+        res.status(200).json({ message: update });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error" }); 
+    }
 });
+
 
 
 module.exports = router

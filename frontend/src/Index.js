@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator()
 export default function Index() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }} >
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name='Onboarding' component={Onboarding} />
         <Stack.Screen name='Register' component={Register} />
         <Stack.Screen name='Login' component={Login} />

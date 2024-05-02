@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Choose from './Choose'
 import GenderPicker from './GenderPicker'
 import Button from '../components/Button'
+import CustomModal from '../../modals/CustomModal';
+
 
 import { useNavigation, useRoute } from '@react-navigation/native'
 
@@ -17,19 +19,6 @@ export default Continue = () => {
 
     const { email } = route.params
 
-    const handleNext = () => {
-        const userData = {
-            email: email,
-            age: age,
-            weight: weight,
-            height: height,
-            sex: Gender
-        }
-        axios.put('http://192.168.1.4:3000/user/update', userData).then((res) => {
-            console.log(res.data)
-        }).catch((err) => { console.log(err) })
-    }
-
     const componentsArray = [
         { key: 'genderPicker', component: GenderPicker },
         { key: 'choose', component: Choose },
@@ -41,6 +30,37 @@ export default Continue = () => {
 
     const items = { age: age, weight: weight, height: height }
     const setItems = { setAge: setAge, setWeight: setWeight, setHeight: setHeight }
+
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
+
+    const handleNext = () => {
+        const userData = {
+            email: email,
+            age: age,
+            weight: weight,
+            height: height,
+            sex: Gender
+        }
+        axios.put('http://192.168.43.81:3000/user/update', userData).then((res) => {
+            const {message}=res.data
+            if (message==="User data updated successfully"){
+                console.log(message)
+                setModalMessage(message)
+            }
+            else{
+                setModalMessage(message)
+            }
+            setModalVisible(true)
+        }).catch((err) => { console.log(err) })
+    }
+
+    const closeModal = () => {
+    setModalVisible(false);
+    if (modalMessage === "User data updated successfully") {
+      navigation.navigate('Login')
+    }
+  };
 
     const render = (item) => {
         const Component = item.component;
@@ -70,6 +90,11 @@ export default Continue = () => {
             <View style={{  width: 150, alignSelf: 'center' }} >
                 {age && weight && height && Gender && <Button title={'Next'} onPress={() => handleNext()} />}
             </View>
+            <CustomModal
+                visible={modalVisible}
+                onClose={closeModal}
+                message={modalMessage}
+            />
         </View>
     )
 }

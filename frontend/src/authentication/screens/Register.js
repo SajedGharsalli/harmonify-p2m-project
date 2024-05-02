@@ -27,12 +27,12 @@ export default function Register() {
       email: email,
       password: password,
     };
-    axios.post('http://192.168.1.4:3000/user/register', userData)
+    axios.post('http://192.168.43.81:3000/user/register', userData)
       .then((res) => {
         const { message } = res.data;
         console.log(message)
         if (message==="Registration successful"){
-          axios.post('http://192.168.1.4:3000/otp/',{email: email}).then((res)=>{
+          axios.post('http://192.168.43.81:3000/otp/',{email: email}).then((res)=>{
           console.log("email sent")
           }).catch(err=>console.log(err))
         }
