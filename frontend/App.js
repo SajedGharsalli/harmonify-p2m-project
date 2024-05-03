@@ -1,15 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import Index from './src/Index';
-import OtpVerif from './src/verification/screens/OtpVerif';
-import Login from './src/authentication/screens/Login';
-import CustomModal from './src/modals/CustomModal';
+import BottomTabs from './src/Home/Screens/BottomTabs';
 
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Index />
+      <BottomTabs />
       <StatusBar style='dark' />
     </View>
   );
