@@ -1,15 +1,14 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Assuming you're using Expo
-
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function BottomTabs() {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const tabs = [
-    { title: 'Home', iconName: 'home-outline' },
-    { title: 'Profile', iconName: 'person-outline' },
-    { title: 'Settings', iconName: 'settings-outline' }
+    { title: 'Health records', iconName: 'heartbeat' },
+    // { title: 'Profile', iconName: 'person-outline' },
+    // { title: 'Settings', iconName: 'settings-outline' }
   ];
 
   const renderTab = (tab, index) => (
@@ -18,7 +17,7 @@ export default function BottomTabs() {
       style={[styles.tab, { backgroundColor: index === selectedIndex ? '#FF6F61' : '#FFF', shadowOpacity: index === selectedIndex ? 0.2 : 0 }]}
       onPress={() => setSelectedIndex(index)}
     >
-      <Ionicons name={tab.iconName} size={28} color={index === selectedIndex ? '#FFF' : '#000'} />
+      <FontAwesome name={tab.iconName} size={24} color="black" />
       <Text style={[styles.tabText, { color: index === selectedIndex ? '#FFF' : '#000' }]}>{tab.title}</Text>
     </TouchableOpacity>
   );
@@ -34,7 +33,6 @@ export default function BottomTabs() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#FFF',
   },
   bottomTab: {
