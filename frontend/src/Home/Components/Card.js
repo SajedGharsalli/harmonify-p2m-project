@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    paddingTop: 40,
+    paddingTop: 20,
   },
   chartContainer: {
     backgroundColor: '#fff',

@@ -7,48 +7,40 @@ export default Activity = () => {
   const chartData = {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     datasets: [
-      { data: [20, 45, 28, 80, 100, 43, 62], color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, strokeWidth: 2, legend: 'Walk' },
-      { data: [50, 72, 60, 90, 75, 40, 65], color: (opacity = 1) => `rgba(255, 69, 58, ${opacity})`, strokeWidth: 2, legend: 'Sleep' },
-      { data: [10, 35, 18, 50, 30, 55, 25], color: (opacity = 1) => `rgba(66, 220, 135, ${opacity})`, strokeWidth: 2, legend: 'Heart' },
+      { data: [20, 45, 25, 80, 100, 50, 60], color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, strokeWidth: 2, legend: 'Walk' },
+      { data: [50, 70, 60, 90, 75, 40, 65], color: (opacity = 1) => `rgba(255, 69, 58, ${opacity})`, strokeWidth: 2, legend: 'Sleep' },
+      { data: [10, 35, 18, 50, 30, 20, 25], color: (opacity = 1) => `rgba(66, 220, 135, ${opacity})`, strokeWidth: 2, legend: 'Stress' },
     ],
   };
 
   return (
-    <Card>
-        <Text style={styles.chartTitle}>Weekly Progress</Text>
-        <LineChart
-          data={chartData}
-          width={320}
-          height={200}
-          yAxisSuffix="%"
-          chartConfig={{
-            backgroundGradientFrom: '#fff',
-            backgroundGradientTo: '#fff',
-            strokeWidth: 2,
-            decimalPlaces: 0,
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          }}
-          bezier
-        />
-        <View style={styles.legendContainer}>
-          {chartData.datasets.map((dataset, index) => (
-            <View key={index} style={styles.legendItem}>
-              <View style={[styles.legendColor, { backgroundColor: dataset.color() }]} />
-              <Text style={styles.legendText}>{dataset.legend}</Text>
-            </View>
-          ))}
-        </View>
-      </Card>
+    <Card style={styles.chartContainer}>
+      <Text style={styles.headerText}>Weekly Progress</Text>
+      <LineChart
+        data={chartData}
+        width={350}
+        height={250}
+        chartConfig={{
+          backgroundGradientFrom: '#ffffff',
+          backgroundGradientTo: '#ffffff',
+          decimalPlaces: 0,
+          color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+        }}
+        bezier
+      />
+      <View style={styles.legendContainer}>
+        {chartData.datasets.map((dataset, index) => (
+          <View key={index} style={styles.legendItem}>
+            <View style={[styles.legendColor, { backgroundColor: dataset.color() }]} />
+            <Text style={styles.legendText}>{dataset.legend}</Text>
+          </View>
+        ))}
+      </View>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
-  
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
   chartContainer: {
     backgroundColor: '#fff',
     borderRadius: 10,
@@ -56,11 +48,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     elevation: 2,
+    marginBottom: 20,
   },
-  chartTitle: {
-    fontSize: 20,
+  headerText: {
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10,
+    color: '#333333',
   },
   legendContainer: {
     flexDirection: 'row',
@@ -79,6 +72,6 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   legendText: {
-    fontSize: 14,
-  },
+    fontSize: 18,
+    color: '#333333',  },
 });

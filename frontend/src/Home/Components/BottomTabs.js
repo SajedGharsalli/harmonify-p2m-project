@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 
 export default function BottomTabs() {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const tabs = [
-    { title: 'Health records', iconName: 'heartbeat' },
-    // { title: 'Profile', iconName: 'person-outline' },
+    { title: 'Health records', iconName: 'heart-pulse' },
+    { title: 'Profile', iconName: 'bottle-water' },
     // { title: 'Settings', iconName: 'settings-outline' }
   ];
 
@@ -17,7 +17,7 @@ export default function BottomTabs() {
       style={[styles.tab, { backgroundColor: index === selectedIndex ? '#FF6F61' : '#FFF', shadowOpacity: index === selectedIndex ? 0.2 : 0 }]}
       onPress={() => setSelectedIndex(index)}
     >
-      <FontAwesome name={tab.iconName} size={24} color="black" />
+      <FontAwesome6 name={tab.iconName} size={32}  color="black" />
       <Text style={[styles.tabText, { color: index === selectedIndex ? '#FFF' : '#000' }]}>{tab.title}</Text>
     </TouchableOpacity>
   );

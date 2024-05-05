@@ -53,7 +53,7 @@ const IBW = () => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: {
@@ -63,28 +63,31 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 5,
+    marginBottom: 20,
   },
   container: {
     alignItems: 'center',
     padding: 20,
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    textAlign: 'center',
+    color: '#333333',
   },
   infoContainer: {
     flexDirection: 'row',
     marginBottom: 10,
   },
   infoLabel: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     marginRight: 10,
+    color: '#333333',
   },
   infoText: {
-    fontSize: 16,
+    fontSize: 18,
+    color: '#007AFF',
   },
   resultContainer: {
     marginTop: 10,
@@ -95,12 +98,14 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   resultLabel: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     marginRight: 10,
+    color: '#333333',
   },
   resultText: {
-    fontSize: 16,
+    fontSize: 18,
+    color: '#007AFF',
   },
 });
 
