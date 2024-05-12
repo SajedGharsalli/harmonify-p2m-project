@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
     padding: 20,
   },
   title: {
@@ -76,15 +76,15 @@ const styles = StyleSheet.create({
   intakeText: {
     fontSize: 24,
     marginRight: 10,
-    color: '#FFF',
+    color: '#000',
   },
   intakeValue: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: '#0099e6',
   },
   button: {
-    backgroundColor: '#4A90E2',
+    backgroundColor: '#0099e6',
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',

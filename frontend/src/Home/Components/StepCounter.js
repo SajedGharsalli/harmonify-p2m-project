@@ -8,6 +8,7 @@ export default function StepCounter() {
   const [currentStepCount, setCurrentStepCount] = useState(0);
   const [caloriesBurned, setCaloriesBurned] = useState(0);
 
+
   return (
     <Card>
       <View style={styles.header}>
@@ -25,22 +26,7 @@ export default function StepCounter() {
         </View>
       </View>
           <View style={styles.chartContainer}>
-            <ProgressChart
-              data={{
-                labels: ['Step Count'],
-                data: [[currentStepCount]]
-              }}
-              width={100}
-              height={150}
-              strokeWidth={16}
-              radius={34}
-              chartConfig={{
-                backgroundGradientFrom: '#fff',
-                backgroundGradientTo: '#fff',
-                color: (opacity = 1) => `rgba(0, 122, 255, ${opacity})`,
-              }}
-              hideLegend={true}
-            />
+          
       </View>
           </View>
     </Card>

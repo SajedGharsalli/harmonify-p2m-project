@@ -5,7 +5,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Activity from '../Components/Activity';
 import IBW from '../Components/IBW';
 import StepCounter from '../Components/StepCounter';
-import BottomTabs from '../Components/BottomTabs';
 
 export default function HealthRecords() {
   return (
@@ -15,14 +14,14 @@ export default function HealthRecords() {
         <IBW />
         <StepCounter />
       </ScrollView>
-      <BottomTabs />
     </GestureHandlerRootView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginVertical :40
   },
   scrollContent: {
     flexGrow: 1,

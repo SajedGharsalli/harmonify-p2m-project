@@ -1,38 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { LineChart } from 'react-native-chart-kit';
+import { CircularProgressBase } from 'react-native-circular-progress-indicator';
 import Card from './Card';
 
 export default Activity = () => {
-  const chartData = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    datasets: [
-      { data: [20, 45, 25, 80, 100, 50, 60], color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, strokeWidth: 2, legend: 'Walk' },
-      { data: [50, 70, 60, 90, 75, 40, 65], color: (opacity = 1) => `rgba(255, 69, 58, ${opacity})`, strokeWidth: 2, legend: 'Sleep' },
-      { data: [10, 35, 18, 50, 30, 20, 25], color: (opacity = 1) => `rgba(66, 220, 135, ${opacity})`, strokeWidth: 2, legend: 'Stress' },
-    ],
-  };
+  const datasets = [
+      { color: '#e84118' , legend: 'Steps' },
+      { color: '#badc58', legend: 'Sleep' },
+      { color: '#18dcff', legend: 'Stress' },
+    ]
+    const [steps,setSteps]=useState(80);
+    const [sleep,setSleep]=useState(70);
+    const [stress,setStress]=useState(80);
 
+  const props = {
+    activeStrokeWidth: 25,
+    inActiveStrokeWidth: 25,
+    inActiveStrokeOpacity: 0.2
+  };
   return (
     <Card style={styles.chartContainer}>
-      <Text style={styles.headerText}>Weekly Progress</Text>
-      <LineChart
-        data={chartData}
-        width={350}
-        height={250}
-        chartConfig={{
-          backgroundGradientFrom: '#ffffff',
-          backgroundGradientTo: '#ffffff',
-          decimalPlaces: 0,
-          color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-        }}
-        bezier
-      />
+      <Text style={styles.headerText}>Daily Progress</Text>
+      <View style={{marginRight : 20}}>
+      <CircularProgressBase
+            {...props}
+            value={steps}
+            radius={100}
+            activeStrokeColor={'#e84118'}
+            inActiveStrokeColor={'#e84118'}
+          >
+          <CircularProgressBase
+            {...props}
+            value={sleep}
+            radius={75}
+            activeStrokeColor={'#badc58'}
+            inActiveStrokeColor={'#badc58'}
+          >
+            <CircularProgressBase
+              {...props}
+              value={stress}
+              radius={50}
+              activeStrokeColor={'#18dcff'}
+              inActiveStrokeColor={'#18dcff'}
+            />
+              </CircularProgressBase>
+            </CircularProgressBase>
+      </View>
       <View style={styles.legendContainer}>
-        {chartData.datasets.map((dataset, index) => (
+        {datasets.map((data, index) => (
           <View key={index} style={styles.legendItem}>
-            <View style={[styles.legendColor, { backgroundColor: dataset.color() }]} />
-            <Text style={styles.legendText}>{dataset.legend}</Text>
+            <View style={[styles.legendColor, { backgroundColor: data.color }]} />
+            <Text style={styles.legendText}>{data.legend}</Text>
           </View>
         ))}
       </View>
